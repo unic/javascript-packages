@@ -86,6 +86,7 @@ export default () => {
    *
    * @param {String} event - Name of Event
    * @param {Array} ...data - All additional params land in here and are passed to the listeners
+   * @return {undefined}
    */
   const trigger = (event, ...data) => {
     if (!events[event] || !events[event].queue.length) {
