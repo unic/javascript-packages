@@ -1,20 +1,20 @@
 {
-  "name": "@unic/composite-logger",
-  "version": "0.0.0",
-  "description": "Lightweight logger composite to help you debug your modules and disable when you go to production",
+  "name": "@unic/composite-observer",
+  "version": "0.0.8",
+  "description": "Simple observer composite to use for your factories",
   "scripts": {
     "start": "npm run dev",
     "dev": "ava --watch",
     "build": "webpack",
     "test": "ava"
   },
-  "main": "dist/logger.js",
+  "main": "dist/observer.js",
   "keywords": [
     "composite",
-    "logger"
+    "observer"
   ],
   "author": "Unic AG",
-  "repository": "https://github.com/unic/javascript-packages/tree/master/packages/composite-logger",
+  "repository": "https://github.com/unic/javascript-packages/tree/master/packages/composite-observer",
   "license": "Apache-2.0",
   "devDependencies": {
     "babel-cli": "6.24.1",

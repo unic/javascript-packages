@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import test from 'ava';
 import sinon from 'sinon';
 import localStorage from 'mock-local-storage';
