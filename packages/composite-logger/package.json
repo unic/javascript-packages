@@ -4,9 +4,8 @@
   "description": "Lightweight logger composite to help you debug your modules and disable when you go to production",
   "scripts": {
     "start": "npm run dev",
-    "dev": "ava --watch",
-    "build": "webpack",
-    "test": "ava"
+    "dev": "lerna exec --scope=@unic/composite-logger -- ava --watch",
+    "build": "lerna exec --scope=@unic/composite-logger -- webpack --mode \"production\""
   },
   "main": "dist/logger.js",
   "keywords": [
@@ -16,13 +15,6 @@
   "author": "Unic AG",
   "repository": "https://github.com/unic/javascript-packages/tree/master/packages/composite-logger",
   "license": "Apache-2.0",
-  "devDependencies": {
-    "babel-cli": "6.24.1",
-    "babel-loader": "7.1.2",
-    "babel-plugin-external-helpers": "6.22.0",
-    "babel-preset-env": "1.6.1",
-    "webpack": "3.10.0"
-  },
   "ava": {
     "files": [
       "src/**/*.spec.js"
