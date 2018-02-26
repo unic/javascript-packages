@@ -7,10 +7,6 @@ Mono-repo for npm packages based on Lerna.
 
 - (None yet)
 
-### Singleton
-
-- (None yet)
-
 ### Composites
 
 - [composite-logger](packages/composite-logger)

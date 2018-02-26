@@ -15,6 +15,9 @@
   "author": "Unic AG",
   "repository": "https://github.com/unic/javascript-packages/tree/master/packages/composite-observer",
   "license": "Apache-2.0",
+  "publishConfig": {
+    "access": "public"
+  },
   "ava": {
     "files": [
       "src/**/*.spec.js"
