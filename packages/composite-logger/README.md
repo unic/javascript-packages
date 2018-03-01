@@ -78,6 +78,8 @@ Log function params to console (including given prefix from creation).
 // Creation
 const obj = logger('MyModule');
 
+window.localStorage.debug = true; // Enable logging to the console
+
 obj.log('Hello', 'World', '!'); // Outputs 'MyModule → Hello World !' to the console
 obj.log(1, 2, 3, 4); // Outputs 'MyModule → 1 2 3 4' to the console
 ```
