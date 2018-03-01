@@ -1,6 +1,6 @@
 {
   "name": "@unic/composite-logger",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Lightweight logger composite to help you debug your modules and disable when you go to production",
   "scripts": {
     "start": "npm run dev",

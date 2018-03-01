@@ -1,6 +1,6 @@
 {
   "name": "@unic/composite-observer",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Simple observer composite to use for your factories",
   "scripts": {
     "start": "npm run dev",
