@@ -13,12 +13,13 @@
  *
  * // Factory
  * export default () => {
- *  const Object.assign({}, observer());
+ *  const instance = Object.assign({}, observer());
  *  ...
  *  ...
  * }
+ *
+ * @return {Object} - Expose observer-functionality
  */
-
 export default () => {
   let uid = -1;
   const events = {};

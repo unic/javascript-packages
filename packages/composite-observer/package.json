@@ -5,9 +5,9 @@
   "scripts": {
     "start": "npm run dev",
     "dev": "lerna exec --scope=@unic/composite-observer -- ava --watch",
-    "build": "lerna exec --scope=@unic/composite-observer -- webpack --mode \"production\""
+    "build": "lerna exec --scope=@unic/composite-observer -- webpack --mode production --module-bind js=babel-loader"
   },
-  "main": "dist/observer.js",
+  "main": "dist/main.js",
   "keywords": [
     "composite",
     "observer"

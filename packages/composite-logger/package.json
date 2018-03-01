@@ -5,9 +5,9 @@
   "scripts": {
     "start": "npm run dev",
     "dev": "lerna exec --scope=@unic/composite-logger -- ava --watch",
-    "build": "lerna exec --scope=@unic/composite-logger -- webpack --mode \"production\""
+    "build": "lerna exec --scope=@unic/composite-logger -- webpack --mode production --module-bind js=babel-loader"
   },
-  "main": "dist/logger.js",
+  "main": "dist/main.js",
   "keywords": [
     "composite",
     "logger"
