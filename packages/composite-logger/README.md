@@ -20,29 +20,75 @@ const logger = require('@unic/composite-logger').default;
 
 ## Usage
 
+**Creation**
+```js
+// Creation of object
+const obj = logger('MyPrefix'); // Exposes .log() method
+
+// Logging stuff
+window.localStorage.debug = true; // If this is falsy, nothing will be logged to the console
+obj.log('Hello', 'World'); // Outputs 'MyPrefix → Hello World' to the console
+```
+
+## API
+
+* [logger([prefix])](#logger)
+  * [log([params...])](#log)
+
+<a name="logger"></a>
+
+### logger([prefix])
+
+Create an object with a log method.
+
+**Returns**: <code>Object</code> - Returns an object with exposed .log() method
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [prefix] | <code>String</code> |  | If given, provides a prefix for the logged content from the log method |
+
+**Example**
+```js
+// Basic form
+const obj = logger('MyModule');
+
+// No prefix
+const obj = logger();
+
+// Composition
+const obj = Object.assign({}, object1, object2, logger('MyModule'));
+```
+
+<a name="log"></a>
+
+### log([params...])
+
+Log function params to console (including given prefix from creation).
+
+**Info**: window.localStorage.debug must be truthy to see output in the console
+
+**Returns**: <code>undefined</code>
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [params...] | <code>Any</code> | Pass any number of arguments you want to log to the console |
+
+**Example**
+```js
+// Creation
+const obj = logger('MyModule');
+
+obj.log('Hello', 'World', '!'); // Outputs 'MyModule → Hello World !' to the console
+obj.log(1, 2, 3, 4); // Outputs 'MyModule → 1 2 3 4' to the console
+```
+
+## Helpful Information
+
 A composite is a function or an object which can be used as is or to merged with another object. These composites are normally used in the factory/composition pattern.
 
 Helpful Ressources:
 * https://www.youtube.com/watch?v=ImwrezYhw4w
 * https://www.youtube.com/watch?v=wfMtDGfHWpA
-
-**Important**: In further examples and the API we'll just infer that you've already generated your new object with the composite applied to it and will not give any more examples on how to do that.
-
-**Examples**
-```js
-// Applying the composite to a new object literal
-const obj = Object.assign({}, logger('custom-prefix'));
-
-// Equivalent with lodash.merge
-const obj = _.merge({}, logger('custom-prefix'));
-
-// Just use it as a
-const obj = logger('custom-prefix');
-```
-
-## API
-
-TODO: Provide information for this package
 
 ## License
 

@@ -29,7 +29,7 @@ export default () => {
    *
    * @param {String} event - Name of the event.
    * @param {Function} listener - Callback function.
-   * @param {Boolean} once - If true, removes a listener after first execution
+   * @param {Boolean} [once] - If true, removes a listener after first execution
    * @returns {Integer} Returns an id for this subscription.
    */
   const on = (event, listener, once = false) => {

@@ -22,7 +22,7 @@
     "files": [
       "src/**/*.spec.js"
     ],
-    "source": [
+    "sources": [
       "src/**/*.js"
     ],
     "concurrency": 5,
@@ -30,7 +30,6 @@
     "powerAssert": true,
     "require": [
       "babel-register"
-    ],
-    "babel": "inherit"
+    ]
   }
 }
