@@ -4,8 +4,12 @@
       "targets": {
         "browsers": ["last 2 versions"]
       },
-      "modules": "umd",
       "useBuiltIns": true
     }]
-  ]
+  ],
+  "env": {
+    "test": {
+      "presets": ["env"]
+    }
+  }
 }

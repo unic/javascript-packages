@@ -8,6 +8,7 @@
     "build": "lerna exec --scope=@unic/composite-logger -- webpack --mode production --module-bind js=babel-loader"
   },
   "main": "dist/main.js",
+  "module": "src/index.js",
   "keywords": [
     "composite",
     "logger"

@@ -11,3 +11,9 @@ Mono-repo for npm packages based on Lerna.
 
 - [composite-logger](packages/composite-logger)
 - [composite-observer](packages/composite-observer)
+
+
+TODO:
+* Add BreakpointManager (Singleton)
+* Add PubSub (Singleton)
+* Add Scrollhandler (Singleton)
