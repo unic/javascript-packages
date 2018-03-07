@@ -1,21 +1,21 @@
-# Composite - Observer
+# PubSub
 
 Small and simple observer pattern as a composite for your factories
 
 ## Installation
 
 ```shell
-$ npm install @unic/composite-observer
+$ npm install @unic/pubsub
 ```
 
 ## Importing
 
 ```javascript
 // ES6 Module
-import observer from '@unic/composite-observer';
+import PubSub from '@unic/pubsub';
 
 // CommomJS
-const observer = require('@unic/composite-observer').default;
+const PubSub = require('@unic/pubsub').default;
 ```
 
 ## Usage
