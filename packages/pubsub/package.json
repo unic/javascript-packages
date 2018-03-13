@@ -3,8 +3,6 @@
   "version": "0.0.0",
   "description": "PubSub implemented as a singleton",
   "scripts": {
-    "start": "npm run dev",
-    "dev": "lerna exec --scope=@unic/pubsub -- ava --watch",
     "build": "lerna exec --scope=@unic/pubsub -- webpack --mode production --module-bind js=babel-loader"
   },
   "main": "dist/main.js",
@@ -18,20 +16,6 @@
   "license": "Apache-2.0",
   "publishConfig": {
     "access": "public"
-  },
-  "ava": {
-    "files": [
-      "src/**/*.spec.js"
-    ],
-    "sources": [
-      "src/**/*.js"
-    ],
-    "concurrency": 5,
-    "failFast": true,
-    "powerAssert": true,
-    "require": [
-      "babel-register"
-    ]
   },
   "dependencies": {
     "@unic/composite-observer": "^0.0.10"

@@ -3,8 +3,6 @@
   "version": "0.0.2",
   "description": "Lightweight logger composite to help you debug your modules and disable when you go to production",
   "scripts": {
-    "start": "npm run dev",
-    "dev": "lerna exec --scope=@unic/composite-logger -- ava --watch",
     "build": "lerna exec --scope=@unic/composite-logger -- webpack --mode production --module-bind js=babel-loader"
   },
   "main": "dist/main.js",
@@ -18,19 +16,5 @@
   "license": "Apache-2.0",
   "publishConfig": {
     "access": "public"
-  },
-  "ava": {
-    "files": [
-      "src/**/*.spec.js"
-    ],
-    "sources": [
-      "src/**/*.js"
-    ],
-    "concurrency": 5,
-    "failFast": true,
-    "powerAssert": true,
-    "require": [
-      "babel-register"
-    ]
   }
 }
