@@ -1,5 +1,10 @@
 import PubSub from './index';
 
+test('PubSub exposes getInstance method', () => {
+  expect(['getInstance']).toEqual(Object.keys(PubSub));
+  expect(typeof PubSub.getInstance).toBe('function');
+});
+
 test('PubSub.getInstance() always points to the same instance', () => {
   const instance = PubSub.getInstance();
   expect(instance).toBe(PubSub.getInstance());

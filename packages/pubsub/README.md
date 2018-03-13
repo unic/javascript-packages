@@ -1,6 +1,6 @@
 # PubSub
 
-Small and simple observer pattern as a composite for your factories
+[Singleton](http://www.dofactory.com/javascript/singleton-design-pattern)-version of the composite-observer for app-wide communication between your modules.
 
 ## Installation
 
@@ -20,31 +20,47 @@ const PubSub = require('@unic/pubsub').default;
 
 ## Usage
 
-A composite is a function or an object which can be used as is or to merged with another object. These composites are normally used in the factory/composition pattern.
+You can import PubSub from anywhere in your project and be sure you have the same instance of your observer reade to subscribe to events using [.on()](#on), unsubscribe using [.off()](#off) or trigger all subscribers for a surtain event by [.trigger()](#trigger).
 
-Helpful Ressources:
-* https://www.youtube.com/watch?v=ImwrezYhw4w
-* https://www.youtube.com/watch?v=wfMtDGfHWpA
-
-**Important**: In further examples and the API will just infer that you've already generated your new object with the composite applied on it and will not give any more examples on how to do that.
-
-**Examples**
+**Example**
 ```js
-// Applying the composite to a new object literal
-const obj = Object.assign({}, observer());
+// module-a.js
+import Pubsub from '@unic/pubsub';
 
-// Equivalent with lodash.merge
-const obj = _.merge({}, observer());
+// Subscribe to the event 'eventName' and provide a callback for when this event is triggered
+Pubsub.getInstance().on('eventName', function () {
+  console.log('eventName was triggered');
+});
+```
 
-// Just use it as a
-const obj = observer();
+```js
+// module-b.js
+import Pubsub from '@unic/pubsub';
+
+// Trigger all subscribers to event 'eventName'
+Pubsub.getInstance().trigger('eventName');
 ```
 
 ## API
 
-* [on(event, callback[, once = false])](#on)
-* [off(identifier)](#off)
-* [trigger(event[, params...])](#trigger)
+* [getInstance()](#getInstance)
+  * [on(event, callback[, once = false])](#on)
+  * [off(identifier)](#off)
+  * [trigger(event[, params...])](#trigger)
+
+<a name="getInstance"></a>
+
+### getInstance()
+
+Get the PubSub instance. If the instance was accessed the first time, it'll be created.
+
+**Returns**: <code>Object</code> - Returns the observer instance
+
+**Example**
+```js
+// Get instance of PubSub and save it in another variable
+const PubSubInstance = PubSub.getInstance();
+```
 
 <a name="on"></a>
 
@@ -63,12 +79,12 @@ Subscribe to an event
 **Example**
 ```js
 // Subscribe to the 'eventName' event
-obj.on('eventName', () => {
+PubSub.getInstance().on('eventName', () => {
   console.log('eventName was called');
 });
 
 // Subscribe to the 'eventName' event but unsubscribe automatically after first call
-obj.on('eventName', () => {
+PubSub.getInstance().on('eventName', () => {
   console.log('eventName was called');
   console.log('This handler unsubscribes automatically');
 }, true);
@@ -90,15 +106,15 @@ Unsubscribe a single handler by the identifier returned by .on() or unsubscribe 
 **Example**
 ```js
 // Subscribe to the 'eventName' event
-const uid = obj.on('eventName', () => {
+const uid = PubSub.getInstance().on('eventName', () => {
   console.log('eventName was called');
 });
 
 // Unsubscribe by uid
-obj.off(uid);
+PubSub.getInstance().off(uid);
 
 // Unsubscribe by eventname, this unsubscribes all listeners for this event
-obj.off('eventName');
+PubSub.getInstance().off('eventName');
 ```
 
 <a name="trigger"></a>
@@ -118,20 +134,20 @@ Trigger all listeners by eventname
 **Example**
 ```js
 // Subscribe to the 'eventName' event
-obj.on('eventName', () => {
+PubSub.getInstance().on('eventName', () => {
   console.log('eventName was called');
 });
 
 // Trigger the event 'eventName'
-obj.trigger('eventName');
+PubSub.getInstance().trigger('eventName');
 
 // Subscribe and output all the params you get in the callback
-obj.on('eventName', (param1, param2, ...rest) => {
+PubSub.getInstance().on('eventName', (param1, param2, ...rest) => {
   console.log(param1, param2, rest);
 });
 
 // Trigger the event 'eventName' and add custom parameters for this trigger
-obj.trigger('eventName', 'Hello', 'World', '!!!');
+PubSub.getInstance().trigger('eventName', 'Hello', 'World', '!!!');
 ```
 
 MIT © [Christian Sany](https://github.com/christiansany)
