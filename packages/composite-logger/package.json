@@ -3,7 +3,8 @@
   "version": "0.0.2",
   "description": "Lightweight logger composite to help you debug your modules and disable when you go to production",
   "scripts": {
-    "build": "lerna exec --scope=@unic/composite-logger -- webpack --mode production --module-bind js=babel-loader"
+    "build": "lerna exec --scope=@unic/composite-logger -- webpack --mode production --module-bind js=babel-loader",
+    "prepublish": "npm run build"
   },
   "main": "dist/main.js",
   "module": "src/index.js",

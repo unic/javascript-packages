@@ -3,7 +3,8 @@
   "version": "0.0.10",
   "description": "Simple observer composite to use for your factories",
   "scripts": {
-    "build": "lerna exec --scope=@unic/composite-observer -- webpack --mode production --module-bind js=babel-loader"
+    "build": "lerna exec --scope=@unic/composite-observer -- webpack --mode production --module-bind js=babel-loader",
+    "prepublish": "npm run build"
   },
   "main": "dist/main.js",
   "module": "src/index.js",

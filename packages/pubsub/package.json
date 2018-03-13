@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "description": "PubSub implemented as a singleton",
   "scripts": {
-    "build": "lerna exec --scope=@unic/pubsub -- webpack --mode production --module-bind js=babel-loader"
+    "build": "lerna exec --scope=@unic/pubsub -- webpack --mode production --module-bind js=babel-loader",
+    "prepublish": "npm run build"
   },
   "main": "dist/main.js",
   "module": "src/index.js",
