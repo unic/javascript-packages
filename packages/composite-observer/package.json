@@ -3,33 +3,20 @@
   "version": "0.0.10",
   "description": "Simple observer composite to use for your factories",
   "scripts": {
-    "start": "npm run dev",
-    "dev": "lerna exec --scope=@unic/composite-observer -- ava --watch",
-    "build": "lerna exec --scope=@unic/composite-observer -- webpack --mode production --module-bind js=babel-loader"
+    "build": "lerna exec --scope=@unic/composite-observer -- webpack --mode production --module-bind js=babel-loader",
+    "prepublish": "npm run build"
   },
   "main": "dist/main.js",
+  "module": "src/index.js",
   "keywords": [
     "composite",
-    "observer"
+    "observer",
+    "pubsub"
   ],
   "author": "Unic AG",
   "repository": "https://github.com/unic/javascript-packages/tree/master/packages/composite-observer",
   "license": "Apache-2.0",
   "publishConfig": {
     "access": "public"
-  },
-  "ava": {
-    "files": [
-      "src/**/*.spec.js"
-    ],
-    "sources": [
-      "src/**/*.js"
-    ],
-    "concurrency": 5,
-    "failFast": true,
-    "powerAssert": true,
-    "require": [
-      "babel-register"
-    ]
   }
 }
