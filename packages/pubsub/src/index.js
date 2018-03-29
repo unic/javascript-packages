@@ -21,18 +21,4 @@
 
 import observer from '@unic/composite-observer';
 
-let instance;
-
-export default {
-  /**
-   * Get Singleton instance
-   * If instance doesn't exist yet, it'll be created and then returned
-   * @return {Object} instance
-   */
-  getInstance() {
-    if (!instance) {
-      instance = observer();
-    }
-    return instance;
-  },
-};
+export default observer();

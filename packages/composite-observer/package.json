@@ -10,7 +10,8 @@
   "module": "src/index.js",
   "keywords": [
     "composite",
-    "observer"
+    "observer",
+    "pubsub"
   ],
   "author": "Unic AG",
   "repository": "https://github.com/unic/javascript-packages/tree/master/packages/composite-observer",
