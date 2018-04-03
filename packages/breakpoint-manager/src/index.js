@@ -99,6 +99,7 @@ export default (
 
   /**
    * Throttled resize handler
+   * @return {undefined}
    */
   const resizeHandler = throttle(() => {
     setState();
