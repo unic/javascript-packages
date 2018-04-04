@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "Breakpoint Manager to handle your breakpoint changes",
   "scripts": {
-    "build": "lerna exec --scope=@unic/pubsub -- webpack --mode production --module-bind js=babel-loader",
+    "build": "lerna exec --scope=@unic/breakpoint-manager -- webpack --mode production --module-bind js=babel-loader",
     "prepublish": "npm run build"
   },
   "main": "src/index.js",
@@ -12,7 +12,7 @@
     "resize"
   ],
   "author": "Unic AG",
-  "repository": "https://github.com/unic/javascript-packages/tree/master/packages/pubsub",
+  "repository": "https://github.com/unic/javascript-packages/tree/master/packages/breakpoint-manager",
   "license": "Apache-2.0",
   "publishConfig": {
     "access": "public"

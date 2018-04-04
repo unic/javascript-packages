@@ -23,7 +23,7 @@ const createBreakpointManager = require('@unic/breakpoint-manager').default;
 ```js
 import createBreakpointManager from '@unic/breakpoint-manager';
 
-// Creating a new BreakpointManager (no pun intended)
+// Creating a new BreakpointManager
 const BreakpointManager = createBreakpointManager({
     xs: 0,
     sm: 768,
@@ -34,8 +34,8 @@ const BreakpointManager = createBreakpointManager({
 );
 
 // Subscribe to a breakpoint change
-const subscriptionId = BreakpointManager.on('change', (state, oldState) => {
-  console.log(state, oldState);
+const subscriptionId = BreakpointManager.on('change', function (breakpoint, oldBreakpoint) {
+  console.log(breakpoint, oldBreakpoint);
 
   // Read the current state of your BreakpointManager
   const currentState = BreakpointManager.getState();
@@ -61,24 +61,18 @@ const subscriptionId = BreakpointManager.on('change', (state, oldState) => {
 BreakpointManager.off(subscriptionId);
 ```
 
-## Best practises
-
-Having to write your Breakpoints directly into your JS can be a real hazard to maintain, so I'd advise you to write your breakpoint configuration in a JSON file and load this json file into your JS and into your CSS preprocessor. With this you have a single source of truth for your breakpoints and it's very managable.
-
-**Good plugins to achieve this**
-* https://webpack.js.org/loaders/json-loader/ for laoding JSON into JS
-* https://github.com/acdlite/json-sass for loading JSON into SASS/SCSS
-
 ## API
 
 BreakpointManager has own functionality and functionality provided by its dependencies.
 
 **Factory**
-[createBreakpointManager(breakpoints, unit)](#factory)
+[createBreakpointManager([breakpoints[, unit]])](#factory)
 
-**Own methods**
+**Methods**
 * [getState()](#getstate)
 * [matches(test)](#matches)
+* [on(event, callback)](#on)
+* [off(identifier)](#off)
 
 **Observer**  
 Documentation of these methods are extern
@@ -87,18 +81,23 @@ Documentation of these methods are extern
 
 <a name="factory"></a>
 
-### createBreakpointManager(options)
+### createBreakpointManager([breakpoints[, unit]])
 
 Create a new instance of a BreakpointManager
 
 **Returns**: <code>Object</code> - BreakpointManager
 
-| Param | Type | Description |
-| --- | --- | --- |
-| options | <code>Object</code> | Custom options |
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| breakpoints | <code>Object</code> | <code>{ xs: 0, sm: 768, md: 992, lg: 1200 }</code> | Custom Brekapoints |
+| unit | <code>String</code> | <code>'px'</code> | Unit for calculation (`'px'` or `'em'`) |
 
 **Example**
 ```js
+// With default props
+const BreakpointManager = createBreakpointManager();
+
+// With custom breakpoints
 const BreakpointManager = createBreakpointManager({
     xs: 0,
     sm: 768,
@@ -108,8 +107,7 @@ const BreakpointManager = createBreakpointManager({
   'px'
 );
 
-// Or go with em as a unit
-
+// With custom breakpoints in em
 const BreakpointManager = createBreakpointManager({
     xs: 0,
     sm: 48,
@@ -135,6 +133,8 @@ Get the current state of your BreakpointManager.
 
 **Example**
 ```js
+const state = BreakpointManager.getState();
+
 console.log(BreakpointManager.getState());
 
 /*
@@ -176,10 +176,18 @@ if(!BreakpointManager.matches('sm')) {
 }
 ```
 
+## Best practises
+
+Having to write your Breakpoints directly into your JS can be a real hazard to maintain, so I'd advise you to write your breakpoint configuration in a JSON file and load this json file into your JS and into your CSS preprocessor. With this you have a single source of truth for your breakpoints and it's very managable.
+
+**Good plugins to achieve this**
+* https://webpack.js.org/loaders/json-loader/ for laoding JSON into JS
+* https://github.com/acdlite/json-sass for loading JSON into SASS/SCSS
+
 ## Information and Ressouces about factories
 
-A factory function is simply a function that returns an object.
-Factory functions are often used in combination of composites to accomplish the factory/composition pattern.
+Every function that returns an object is a factory-function.  
+Factories can be used very successfully in factory/composition pattern.
 
 Helpful Ressources:
 * https://www.youtube.com/watch?v=ImwrezYhw4w
