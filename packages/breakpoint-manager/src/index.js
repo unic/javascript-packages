@@ -34,14 +34,9 @@ export default (
   logger = createLogger(NAME),
   observer = createObserver(),
 ) => {
+  // **Composition**
   const instance = {
-    /**
-     * Getter - Name
-     * @return {String} name
-     */
-    get name() {
-      return NAME;
-    },
+    ...observer,
   };
 
   // **Params validation**
@@ -70,10 +65,6 @@ export default (
     width: 0,
     breakpoint: breakpoints[0].name,
   };
-
-  // **Composition**
-
-  Object.assign(instance, observer);
 
   // **Private functions**
 
@@ -178,24 +169,23 @@ export default (
    */
   instance.matches = (match, modifier) => {
     if (!match) {
-      throw new Error('match() expected one parameter.');
-    }
-    if (
-      modifier &&
-      (typeof modifier !== 'string' || (modifier !== 'up' && modifier !== 'down'))
-    ) {
-      throw new Error("modifier must be either 'up' or 'down'");
+      throw new Error('matches() expects at least one parameter');
     }
 
-    if (modifier && typeof match === 'string') {
-      const bp = getBreakpointByName(match);
-      return breakpoints
-        .filter(breakpoint => {
-          if (modifier === 'up') return breakpoint.minWidth >= bp.minWidth;
-          return breakpoint.minWidth <= bp.minWidth;
-        })
-        .map(breakpoint => breakpoint.name)
-        .includes(state.breakpoint.name);
+    if (modifier) {
+      if ((modifier === 'up' || modifier === 'down') && typeof match === 'string') {
+        const bp = getBreakpointByName(match);
+        return breakpoints
+          .filter(breakpoint => {
+            if (modifier === 'up') return breakpoint.minWidth >= bp.minWidth;
+            return breakpoint.minWidth <= bp.minWidth;
+          })
+          .map(breakpoint => breakpoint.name)
+          .includes(state.breakpoint.name);
+      }
+      throw new Error(
+        "modifier must be either 'up' or 'down' and when given a modifier, match parameter must be of type String",
+      );
     } else if (typeof match === 'string') {
       return match === state.breakpoint.name;
     } else if (Array.isArray(match)) {
@@ -203,7 +193,7 @@ export default (
     }
 
     throw new Error(
-      'Sorry man, it seems your given value is neither of type string nor is it an array.',
+      'Sorry man, it seems your given value is neither of type string nor is it an array',
     );
   };
 

@@ -151,10 +151,17 @@ describe('methods', () => {
     });
 
     describe('modifier... (up|down)', () => {
-      test('...throws when given incorrect modifier', () => {
+      test('...throws when given incorrect params', () => {
         expect(() => {
           BreakpointManager.matches('md', 123);
+        }).toThrow();
+
+        expect(() => {
           BreakpointManager.matches('md', 'foo');
+        }).toThrow();
+
+        expect(() => {
+          BreakpointManager.matches(['md'], 'up');
         }).toThrow();
       });
 
