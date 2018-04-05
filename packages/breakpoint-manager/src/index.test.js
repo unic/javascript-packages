@@ -150,7 +150,7 @@ describe('methods', () => {
       expect(BreakpointManager.matches(['xs', 'sm', 'md'])).toBe(true);
     });
 
-    describe('modifiers (up|down)', () => {
+    describe('modifier... (up|down)', () => {
       test('...throws when given incorrect modifier', () => {
         expect(() => {
           BreakpointManager.matches('md', 123);
@@ -192,7 +192,7 @@ describe('methods', () => {
   });
 });
 
-describe('events', () => {
+describe('observer (dependency)', () => {
   beforeEach(() => {
     window.innerWidth = 1024;
     BreakpointManager = createBreakpointManager();
@@ -296,4 +296,27 @@ describe('events', () => {
   });
 });
 
-describe('logger', () => {});
+describe('logger... (dependency)', () => {
+  const logger = {};
+
+  beforeEach(() => {
+    window.innerWidth = 1024;
+    logger.log = jest.fn();
+    BreakpointManager = createBreakpointManager(defaultBreakpoints, 'px', logger);
+  });
+
+  test('...logs when breakpointchange happens...', () => {
+    expect(logger.log.mock.calls.length).toBe(0);
+    resize(400);
+    expect(logger.log.mock.calls.length).toBe(1);
+    resize(500);
+    expect(logger.log.mock.calls.length).toBe(1);
+  });
+
+  test('...with correct params', () => {
+    resize(400);
+    expect(logger.log.mock.calls[0][0]).toBe("Breakpoint changed to 'xs' from 'md'");
+    resize(1200);
+    expect(logger.log.mock.calls[1][0]).toBe("Breakpoint changed to 'lg' from 'xs'");
+  });
+});

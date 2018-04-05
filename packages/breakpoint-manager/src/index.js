@@ -98,9 +98,10 @@ export default (
   /**
    * Set the new state
    * @private
+   * @param {Boolean} silent - When true, events and logs won't be executed
    * @return {undefined}
    */
-  const setState = () => {
+  const setState = (silent = false) => {
     const oldState = Object.assign({}, state); // Cache old state
 
     const width = getWindowWidth(); // window.innerWidth;
@@ -110,12 +111,18 @@ export default (
     state.width = width;
     state.breakpoint = matchingBreakpoints[matchingBreakpoints.length - 1]; // Last matching entry
 
-    instance.trigger('resize', state, oldState); // Trigger resize event
+    if (!silent) {
+      instance.trigger('resize', state, oldState); // Trigger resize event
 
-    // Check silent option and if brakpoint changed
-    if (state.breakpoint.name !== oldState.breakpoint.name) {
-      logger.log('breakpoint changed', state.breakpoint.name, width + unit);
-      instance.trigger('change', state.breakpoint, oldState.breakpoint); // Trigger change event
+      // Check silent option and if brakpoint changed
+      if (state.breakpoint.name !== oldState.breakpoint.name) {
+        logger.log(
+          `Breakpoint changed to '${state.breakpoint.name}' from '${
+            oldState.breakpoint.name
+          }'`,
+        );
+        instance.trigger('change', state.breakpoint, oldState.breakpoint); // Trigger change event
+      }
     }
   };
 
@@ -148,7 +155,8 @@ export default (
 
   /**
    * Get a breakpoint by name
-   * @param {*} name - Name of the Breakpoint to get
+   * @private
+   * @param {String} name - Name of the Breakpoint to get
    * @return {Object|undefined} Breakpoint
    */
   const getBreakpointByName = name => breakpoints.find(b => b.name === name);
@@ -213,7 +221,7 @@ export default (
   initEventListeners();
 
   // Set initial state
-  setState();
+  setState(true);
 
   return instance; // Expose instance
 };
