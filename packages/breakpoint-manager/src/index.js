@@ -1,10 +1,3 @@
-/**
- * BreakpointManager
- *
- * @author Christian Sany
- * @copyright Unic AG
- */
-
 import createObserver from '@unic/composite-observer';
 import createLogger from '@unic/composite-logger';
 import throttle from 'raf-throttle';
@@ -22,6 +15,7 @@ const allowedUnits = ['px', 'em'];
 
 /**
  * BreakpointManager Factory
+ * @function createBreakpointManager
  * @param {Object} breakpoints - Breakpoints
  * @param {Object} unit - Unit (either 'px' or 'em')
  * @param {Object} logger - Dependency - instance of @unic/composite-logger
@@ -89,7 +83,7 @@ export default (
   /**
    * Set the new state
    * @private
-   * @param {Boolean} silent - When true, events and logs won't be executed
+   * @param {Boolean} [silent = false] - When true, events and logs won't be executed
    * @return {undefined}
    */
   const setState = (silent = false) => {

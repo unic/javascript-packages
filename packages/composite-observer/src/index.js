@@ -1,6 +1,6 @@
 /**
  * Composite - Observer
- *
+ * @function createObserver
  * @author Christian Sany
  * @copyright Unic AG
  *
@@ -26,7 +26,7 @@ export default () => {
 
   /**
    * Subscribes to an Event.
-   *
+   * @function on
    * @param {String} event - Name of the event.
    * @param {Function} listener - Callback function.
    * @param {Boolean} [once] - If true, removes a listener after first execution
@@ -52,6 +52,7 @@ export default () => {
    * Unsubscribes from an event.
    * If an event name is passed, all listeners to this event will be removed.
    *
+   * @function off
    * @param {String|Number} event - Can be id of subscription or event name.
    * @returns {String|Number} Returns the removed id or event name. -1 will be
    * returned if nothing was removed.
@@ -85,6 +86,7 @@ export default () => {
   /**
    * Triggers all listeners of event.
    *
+   * @function trigger
    * @param {String} event - Name of Event
    * @param {Array} ...data - All additional params land in here and are passed to the listeners
    * @return {undefined}

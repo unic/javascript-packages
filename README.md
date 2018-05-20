@@ -75,3 +75,7 @@ $ npm install
 # Bootstrap lerna
 $ npm run bootstrap
 ```
+
+## TODOs
+
+* jsdoc should run in prepublish hook to automatically have correct documentation in the published readme
